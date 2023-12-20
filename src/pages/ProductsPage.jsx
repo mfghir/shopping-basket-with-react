@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Card from "../components/Card";
 import Loader from "../components/Loader";
 
@@ -11,8 +11,14 @@ import { FaListUl } from "react-icons/fa";
 
 const ProductsPage = () => {
   const products = useProducts();
+  const [displayed, setDisplayed] = useState([]);
 
   const [search, setSearch] = useState("");
+
+  useEffect(() => {
+    setDisplayed(products)
+  }, [products]);
+
   const searchHandler = () => {};
 
   const categoryHandler = (e) => {
@@ -37,8 +43,8 @@ const ProductsPage = () => {
 
       <div className={styles.container}>
         <div className={styles.products}>
-          {!products.length && <Loader />}
-          {products.map((p) => (
+          {!displayed.length && <Loader />}
+          {displayed.map((p) => (
             <Card key={p.id} data={p} />
           ))}
         </div>
