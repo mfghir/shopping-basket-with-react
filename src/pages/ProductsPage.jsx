@@ -8,6 +8,7 @@ import styles from "./ProductsPage.module.css";
 import { ImSearch } from "react-icons/im";
 
 import { FaListUl } from "react-icons/fa";
+import { filterProducts, searchProducts } from "../helper/helper";
 
 const ProductsPage = () => {
   const products = useProducts();
@@ -21,7 +22,9 @@ const ProductsPage = () => {
   }, [products]);
 
   useEffect(() => {
-
+    let finalProducts = searchProducts(products, query.search);
+    finalProducts = filterProducts(finalProducts, query.category);
+    setDisplayed(finalProducts);
   }, [query]);
 
   const searchHandler = () => {
