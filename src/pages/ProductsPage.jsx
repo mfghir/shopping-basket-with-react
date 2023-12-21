@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/no-unescaped-entities */
 import { useEffect, useState } from "react";
 import Card from "../components/Card";
@@ -11,6 +13,7 @@ import { FaListUl } from "react-icons/fa";
 import {
   createQueryObject,
   filterProducts,
+  getInitialQuery,
   searchProducts,
 } from "../helper/helper";
 import { useSearchParams } from "react-router-dom";
@@ -25,10 +28,13 @@ const ProductsPage = () => {
 
   useEffect(() => {
     setDisplayed(products);
+    setQuery(getInitialQuery(searchParams));
   }, [products]);
 
   useEffect(() => {
     setSearchParams(query);
+    setSearch(query.search || "");
+
     let finalProducts = searchProducts(products, query.search);
     finalProducts = filterProducts(finalProducts, query.category);
     setDisplayed(finalProducts);
