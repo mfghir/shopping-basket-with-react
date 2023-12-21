@@ -8,34 +8,41 @@ import styles from "./ProductsPage.module.css";
 import { ImSearch } from "react-icons/im";
 
 import { FaListUl } from "react-icons/fa";
-import { filterProducts, searchProducts } from "../helper/helper";
+import {
+  createQueryObject,
+  filterProducts,
+  searchProducts,
+} from "../helper/helper";
+import { useSearchParams } from "react-router-dom";
 
 const ProductsPage = () => {
   const products = useProducts();
   const [displayed, setDisplayed] = useState([]);
-
   const [search, setSearch] = useState("");
+
   const [query, setQuery] = useState({});
+  const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
     setDisplayed(products);
   }, [products]);
 
   useEffect(() => {
+    setSearchParams(query);
     let finalProducts = searchProducts(products, query.search);
     finalProducts = filterProducts(finalProducts, query.category);
     setDisplayed(finalProducts);
   }, [query]);
 
   const searchHandler = () => {
-    setQuery((query) => ({ ...query, search }));
+    setQuery((query) => createQueryObject(query, { search }));
   };
 
   const categoryHandler = (e) => {
     const { tagName } = e.target;
     const category = e.target.innerText.toLowerCase();
     if (tagName !== "LI") return;
-    setQuery((query) => ({ ...query, category }));
+    setQuery((query) => createQueryObject(query, { category }));
   };
 
   return (
@@ -68,7 +75,7 @@ const ProductsPage = () => {
           <ul onClick={categoryHandler}>
             <li>All</li>
             <li>Electronics</li>
-            <li>Jewelry</li>
+            <li>Jewelery</li>
             <li>Men's Clothing</li>
             <li>Women's Clothing</li>
           </ul>
