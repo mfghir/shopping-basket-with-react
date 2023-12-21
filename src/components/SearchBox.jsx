@@ -1,6 +1,8 @@
 /* eslint-disable react/prop-types */
 import { ImSearch } from "react-icons/im";
 import { createQueryObject } from "../helper/helper";
+import styles from "./SearchBox.module.css";
+
 
 const SearchBox = ({ search, setSearch, setQuery }) => {
   const searchHandler = () => {
@@ -8,7 +10,7 @@ const SearchBox = ({ search, setSearch, setQuery }) => {
   };
 
   return (
-    <div className="">
+    <div className={styles.search}>
       <input
         type="text"
         placeholder="Search..."
