@@ -34,7 +34,7 @@ const reducer = (state, action) => {
       };
 
     case "INCREASE":
-      const index = state.selectedItems.find(
+      const index = state.selectedItems.findIndex(
         (item) => item.id == action.payload.id
       );
       state.selectedItems[index].quantity++;
