@@ -1,3 +1,4 @@
+/* eslint-disable no-case-declarations */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import { createContext, useContext, useReducer } from "react";
@@ -22,23 +23,46 @@ const reducer = (state, action) => {
         checkout: false,
       };
 
-    // case "REMOVE_FROM_CART":
-    //   const filteredItems = state.selectedItems.filter(
-    //     (item) => item.id !== action.item.id
-    //   );
-    //   return { ...state, selectedItems: filteredItems };
-    // case "CHECKOUT":
-    //   let sum = 0;
-    //   action.items.forEach((item) => {
-    //     sum += item.price * item.quantity;
-    //   });
-    //   return {
-    //     ...state,
-    //     checkout: true,
-    //     total: sum,
-    //     itemsCounter: action.items.length,
-    //     selectedItems: [],
-    //   };
+    case "REMOVE_ITEM":
+      const newSelectedItems = state.selectedItems.filter(
+        (item) => item.id !== action.payload.id
+      );
+      return {
+        ...state,
+        selectedItems: [...newSelectedItems],
+        ...sumProducts(newSelectedItems),
+      };
+
+    case "INCREASE":
+      const index = state.selectedItems.find(
+        (item) => item.id == action.payload.id
+      );
+      state.selectedItems[index].quantity++;
+
+      return {
+        ...state,
+        ...sumProducts(state.selectedItems),
+      };
+
+    case "DECREASE": {
+      const index = state.selectedItems.findIndex(
+        (item) => item.id == action.payload.id
+      );
+      state.selectedItems[index].quantity--;
+
+      return {
+        ...state,
+        ...sumProducts(state.selectedItems),
+      };
+    }
+
+    case "CHECKOUT":
+      return {
+        selectedItems: [],
+        itemsCounter: 0,
+        total: 0,
+        checkout: true,
+      };
 
     default:
       throw new Error("Invalid action");
