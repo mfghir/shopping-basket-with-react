@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { productQuantity, shortenText } from "../helper/helper";
 import styles from "./Card.module.css";
 
-import { useCart } from "../context/CartContxt";
+import { useCart } from "../context/CartContext";
 import { TbListDetails, TbShoppingBagCheck } from "react-icons/tb";
 import { MdDeleteOutline } from "react-icons/md";
 
