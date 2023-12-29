@@ -4,15 +4,15 @@ import DetailsPage from "./pages/DetailsPage";
 
 import CheckoutPage from "./pages/CheckoutPage";
 import NotFoundPage from "./pages/404";
-import ProductsProvider from "./context/ProductContext";
+// import ProductsProvider from "./context/ProductContext";
 
-import CartProvider from "./context/CartContext";
+// import CartProvider from "./context/CartContext";
 import Layout from "./layout/Layout";
 
 function App() {
   return (
-    <CartProvider>
-      <ProductsProvider>
+    // <CartProvider>
+    //   <ProductsProvider>
         <Layout>
           <Routes>
             <Route index element={<Navigate to="/products" replace />} />
@@ -22,8 +22,8 @@ function App() {
             <Route path="/*" element={<NotFoundPage />} />
           </Routes>
         </Layout>
-      </ProductsProvider>
-    </CartProvider>
+    //   </ProductsProvider>
+    // </CartProvider>
   );
 }
 
