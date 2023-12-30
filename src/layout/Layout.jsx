@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 import { PiShoppingCartSimpleBold } from "react-icons/pi";
 import { Link } from "react-router-dom";
-import { useCart } from "../context/CartContext";
 
 import styles from "./Layout.module.css";
 

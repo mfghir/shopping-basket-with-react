@@ -1,6 +1,5 @@
 import BasketCard from "../components/BasketCard";
 import BasketSidebar from "../components/BasketSidebar";
-// import { useCart } from "../context/CartContext";
 
 import styles from "./CheckoutPage.module.css";
 
