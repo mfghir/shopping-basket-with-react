@@ -1,7 +1,4 @@
 /* eslint-disable react/prop-types */
-
-import { createContext, useContext, useReducer } from "react";
-import { sumProducts } from "../helper/helper";
 import { createSlice } from "@reduxjs/toolkit";
 import { sumPrice, sumQuantity } from "../../helper/helper";
 

@@ -1,13 +1,13 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import { Link } from "react-router-dom";
-import { productQuantity, shortenText } from "../helper/helper";
+import { shortenText } from "../helper/helper";
 import styles from "./Card.module.css";
 
-import { useCart } from "../context/CartContext";
 import { TbListDetails, TbShoppingBagCheck } from "react-icons/tb";
 import { MdDeleteOutline } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
+
 import {
   addItem,
   decrease,

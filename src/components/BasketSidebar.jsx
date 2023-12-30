@@ -4,8 +4,13 @@ import { FaHashtag } from "react-icons/fa6";
 import { BsPatchCheck } from "react-icons/bs";
 
 import styles from "./BasketSidebar.module.css";
+import { useDispatch } from "react-redux";
+import { checkout } from "../features/cart/cartSlice";
 
-const BasketSidebar = ({ state, clickHandler }) => {
+const BasketSidebar = ({ state }) => {
+  const dispatch = useDispatch();
+
+
   return (
     <div className={styles.sidebar}>
       <div>
@@ -26,7 +31,7 @@ const BasketSidebar = ({ state, clickHandler }) => {
         <span>{!state.checkout && "pending..."}</span>
       </div>
 
-      <button onClick={() => clickHandler("CHECKOUT")}>Checout</button>
+      <button onClick={() => dispatch(checkout())}>Checout</button>
     </div>
   );
 };
